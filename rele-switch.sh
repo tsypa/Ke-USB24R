@@ -1,7 +1,7 @@
 #!/bin/sh
 
 usage() {
-    echo $(basename ${0}) '<device> <line> <seconds>'
+    echo ${0##*/} '<device> <line> <seconds>'
 }
 
 if [ ${#} -ne 3 ] ; then
@@ -27,9 +27,9 @@ case ${3} in
 	;;
 esac
 
-PROGNAME=$(basename ${0})
+PROGNAME=${0##*/}
 LOGFILE=/var/log/${PROGNAME%.*}
-echo "$(--rfc-3339='seconds') ${SLEEPTIME}" >> ${LOGFILE}
+echo "date:\"$(date --rfc-3339=seconds)\" duration:\"${SLEEPTIME}\"" >> ${LOGFILE}
 
 printf "\$KE,REL,${LINE},1\r\n" > ${DEVICE}
 sleep ${SLEEPTIME}
