@@ -27,6 +27,10 @@ case ${3} in
 	;;
 esac
 
+PROGNAME=$(basename ${0})
+LOGFILE=/var/log/${PROGNAME%.*}
+echo "$(--rfc-3339='seconds') ${SLEEPTIME}" >> ${LOGFILE}
+
 printf "\$KE,REL,${LINE},1\r\n" > ${DEVICE}
 sleep ${SLEEPTIME}
 printf "\$KE,REL,${LINE},0\r\n" > ${DEVICE}
