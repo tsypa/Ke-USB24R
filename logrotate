@@ -1,0 +1,13 @@
+/var/log/rele-switch
+{
+	rotate 16
+	weekly
+	missingok
+	nocreate
+	nodelaycompress
+	notifempty
+	noolddir
+	nomail
+	noolddir
+	compress	
+}
